@@ -17,7 +17,11 @@ def generate_launch_description():
             executable="controller_node",
             name="controller_node",
             output="screen",
-            # parameters=[{"publish_rate_hz": 50.0, "control_mode": "position"}],
+            parameters=[{
+                "publish_rate_hz": 50.0,
+                "trajectory_duration": 2.0,
+                "control_mode": "position",
+            }],
         ),
         Node(
             package="planar_arm_control",
