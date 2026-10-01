@@ -1,0 +1,49 @@
+# 3-DoF Planar Manipulator — ROS 2 Control & Real-Time GUI
+
+A ROS 2 Humble simulation of a 3-DoF planar revolute manipulator implementing Cartesian target control, inverse kinematics, smooth joint-space trajectory generation, real-time joint telemetry, and a PyQt5/PyQtGraph visualization GUI.
+
+This project was developed as a take-home technical exercise for the **Robotics Software Engineer — ROS2 & GUI Systems** role at **Kineshia Robotics**.
+
+---
+
+## 1. Project Overview
+
+The system provides a modular ROS 2 architecture for controlling and visualizing a simulated 3-DoF planar robotic arm.
+
+The operator specifies an end-effector target in Cartesian coordinates `(x, y)` through the GUI.
+
+The control pipeline is:
+
+```text
+Cartesian Target (x, y)
+          |
+          v
++----------------------+
+|  Controller Node     |
+|----------------------|
+| Target validation    |
+| Workspace checking  |
+| Inverse Kinematics   |
+| Trajectory planning  |
+| Trajectory execution |
++----------+-----------+
+           |
+           v
++----------------------+
+|  Robot Backend       |
+| SimulationBackend    |
++----------+-----------+
+           |
+           v
+    /joint_states
+           |
+           v
++----------------------+
+|     PyQt5 GUI        |
+|----------------------|
+| Live arm rendering   |
+| Joint plots          |
+| EE telemetry         |
+| Target commands      |
+| Pick & Place         |
++----------------------+
